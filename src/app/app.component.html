@@ -1,18 +1,48 @@
-<div>
-  <form [formGroup]="myForm" (ngSubmit)="submitForm()" style="display: flex;flex-direction: column;justify-items: center">
-    <label>Ваше имя: <input formControlName="name" /></label>
-    <label>Ваш Email: <input formControlName="email" /></label>
-    <label>Ваш телефон: <input formControlName="phone_number" [textMask]="{mask: mask}" /></label>
-    <label>Тема:
-      <select formControlName="theme">
-        <option>Техподдержка</option>
-        <option>Продажи</option>
-        <option>Покупки</option>
-        <option>Другое..</option>
-    </select>
-    </label>
-    <label>Ваше сообщение:<textarea formControlName="message"></textarea></label>
-    <label>Цифры:<input type="text" formControlName="captcha" /></label>
-    <button [disabled]="myForm.invalid" type="submit">Отправить письмо!</button>
-  </form>
+
+
+<div class="container">
+
+
+  <div class="content">
+
+
+    <div class="right-side">
+
+      <!-- Заголовок для формы -->
+      <div class="topic-text">Отправьте нам сообщение</div>
+
+      <!-- Форма обратной связи -->
+      <form  [formGroup]="myForm" (ngSubmit)="submitForm()">
+
+
+        <div class="input-box">
+          <input type="text" placeholder="Ваше имя"  formControlName="name" />
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="Введите email" formControlName="email" />
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="Введите телефон" formControlName="phone_number" [textMask]="{mask: mask}" />
+        </div>
+        <div class="input-box message-box">
+        <select formControlName="theme" >
+          <option>Техподдержка</option>
+          <option>Продажи</option>
+          <option>Покупки</option>
+          <option>Другое..</option>
+        </select>
+        </div>
+        <div class="input-box message-box">
+          <textarea placeholder="Сообщение" formControlName="message"></textarea>
+        </div>
+        <div class="captcha">
+          <input type="text" formControlName="captcha" />
+        </div>
+
+        <div class="button">
+          <button type="submit">Отправить письмо!</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
