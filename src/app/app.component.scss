@@ -3,62 +3,28 @@
 /* Подключение шрифта Roboto */
 @import "@fontsource/roboto/500-italic.css";
 
-/* Убираем все отступы */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
-}
-
 /* При расчете размеров инпутов учитываем внутренние отступы и границы */
 input,
 textarea {
   box-sizing: border-box;
 }
 
-
-
-/* Ограничиваем контейнер по ширине 1000px */
 .container {
   width: 100%;
-  max-width: 1000px;
+
   padding: 0 20px;
 }
 
 /* Стили самой формы */
 .content {
-  display: flex; /* делаем колонки в ряд */
-  align-items: center; /* выравниваем по центру */
-  justify-content: space-between; /* колонки растянутся на всю ширину */
+  display: flex;
+  align-items: center;
   background: #fff;
   padding: 40px;
   border-radius: 5px;
   box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
 }
-/* Стили правой колонки */
-.right-side {
-  width: 75%; /* занимает 75% общей ширины */
-  margin-left: 75px;
-}
 
-/* Элементы левой колонки: адрес, телефон, email */
-.details {
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-/* Общие стили для иконок */
-.details i {
-  font-size: 25px; /* задаем размер */
-  color: #3e2093; /* задаем цвет */
-  margin-bottom: 10px;
-}
 
 
 /* Заголовок правой колонки */
@@ -79,17 +45,21 @@ textarea {
   height: 50px; /* по сути задаем высоту input'а */
   width: 100%; /* ширина на всю ширину правой колонки (с учетом padding) */
   margin-bottom: 20px; /* отступаем снизу 20px */
+  display: flex;
+  gap:20px;
+  align-items: center;
+
 }
 
 /* Стили для input и textarea (поле сообщение) */
 .input-box input,
+.input-box select,
 .input-box textarea {
+  font-family: "Roboto", sans-serif;
   height: 100%; /* растягиваем на всю высоту контейнера 50px */
   width: 100%; /* растягиваем на всю ширину */
-  border: none; /* убираем внешние края */
   border-radius: 5px; /* скругляем края */
-  background: #f0f1f8; /* задаем цвет фона */
-  padding: 0 20px; /* отступ справа и слева 20px */
+  padding: 0 25px; /* отступ справа и слева 25px */
 }
 
 /* Отдельно стилизуем поле сообщение */
@@ -124,5 +94,21 @@ textarea {
 /* Меняем цвет фона при наведении на кнопку */
 .button  button[type="submit"]:hover {
   background: rgb(0, 0, 207);
+}
+
+.name{
+  /*Позиционируем*/
+  background: url("../assets/name.png") 4px no-repeat ;
+  background-size: 15px;
+}
+.email{
+  /*Позиционируем*/
+  background: url("../assets/email.png") 4px no-repeat ;
+  background-size: 15px;
+}
+.phone_number{
+  /*Позиционируем*/
+  background: url("../assets/phone.png") 4px no-repeat ;
+  background-size: 15px;
 }
 

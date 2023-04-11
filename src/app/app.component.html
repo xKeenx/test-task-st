@@ -16,16 +16,16 @@
 
 
         <div class="input-box">
-          <input type="text" placeholder="Ваше имя"  formControlName="name" />
+         <span>Ваше имя:</span> <input type="text" placeholder="Ваше имя" class="name" formControlName="name" />
         </div>
         <div class="input-box">
-          <input type="text" placeholder="Введите email" formControlName="email" />
+          <span>Ваш email:</span> <input type="text" placeholder="Введите email" class="email" formControlName="email" />
         </div>
         <div class="input-box">
-          <input type="text" placeholder="Введите телефон" formControlName="phone_number" [textMask]="{mask: mask}" />
+          <span>Ваш телефон:</span>  <input type="text" placeholder="Введите телефон" class="phone_number" formControlName="phone_number" [textMask]="{mask: mask}" />
         </div>
-        <div class="input-box message-box">
-        <select formControlName="theme" >
+        <div class="input-box">
+          <span>Тема:</span><select formControlName="theme">
           <option>Техподдержка</option>
           <option>Продажи</option>
           <option>Покупки</option>
@@ -33,10 +33,10 @@
         </select>
         </div>
         <div class="input-box message-box">
-          <textarea placeholder="Сообщение" formControlName="message"></textarea>
+          <span>Ваше сообщение:</span><textarea placeholder="Сообщение" formControlName="message"></textarea>
         </div>
-        <div class="captcha">
-          <input type="text" formControlName="captcha" />
+        <div class="input-box">
+          <span>Цифры:</span> <input type="text"  formControlName="captcha"  />
         </div>
 
         <div class="button">
