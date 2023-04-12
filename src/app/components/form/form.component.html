@@ -1,0 +1,50 @@
+
+
+<div class="container">
+
+
+  <div class="content">
+
+
+    <div class="right-side">
+
+      <!-- Заголовок для формы -->
+      <div class="topic-text">Отправьте нам сообщение</div>
+
+      <!-- Форма обратной связи -->
+      <form  [formGroup]="myForm" (ngSubmit)="submitForm()">
+
+
+        <div class="input-box">
+          <span>Ваше имя:</span> <input type="text"  placeholder="Ваше имя" class="name" formControlName="name" />
+        </div>
+
+        <div class="input-box">
+          <span>Ваш email:</span> <input type="text" placeholder="Введите email" class="email" formControlName="email" />
+        </div>
+
+        <div class="input-box">
+          <span>Ваш телефон:</span>  <input type="text" placeholder="+7 (123) 231-23-12" class="phone_number" formControlName="phone_number" [textMask]="{mask: mask}" />
+        </div>
+        <div class="input-box">
+          <span>Тема:</span><select formControlName="theme">
+          <option>Техподдержка</option>
+          <option>Продажи</option>
+          <option>Покупки</option>
+          <option>Другое..</option>
+        </select>
+        </div>
+        <div class="input-box message-box">
+          <span>Ваше сообщение:</span><textarea placeholder="Сообщение" formControlName="message"></textarea>
+        </div>
+        <div class="input-box">
+          <span>Цифры:</span> <input type="text"  formControlName="captcha"  />
+        </div>
+
+        <div class="button">
+          <button  [disabled]="myForm.invalid" type="submit">Отправить письмо!</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
