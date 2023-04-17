@@ -48,9 +48,17 @@
           Проверка не пройдена!
         </div>
         <div class="button">
-          <button  [disabled]="myForm.invalid" type="submit">Отправить письмо!</button>
+          <button  [disabled]="myForm.invalid" type="submit" (submit)="submitForm" >Отправить письмо!</button>
         </div>
+
+        <div *ngIf="done">
+          <div>Получено от сервера:</div>
+          <div>Имя: {{receivedUser?.name}}</div>
+          <div>Возраст: {{receivedUser?.email}}</div>
+          <div>Возраст: {{receivedUser?.phone}}</div>
+        </div>`,
       </form>
+
 
 
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../models/user";
+import {AddUserService} from "../../service/add-user.service";
 
 @Component({
   selector: 'app-form',
@@ -10,11 +11,13 @@ import {User} from "../../models/user";
 export class FormComponent {
    captchaImage: string;
    captchaCode: string;
-   users:User[] = []
+  receivedUser: User | undefined; // полученный пользователь
+  done: boolean = false;
    themes:string[] = ['Техподдержка','Продажи','Покупки','Другое..']
    mask = ['+','7',' ','(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/,'-', /\d/, /\d/]
 
-
+  constructor(private AddUserService:AddUserService) {
+  }
   captchaValidator = (control: any) => {
     if (control.value === this.captchaCode) {
       return null;
@@ -51,8 +54,17 @@ export class FormComponent {
 
 
   submitForm() {
+    let user = {
+      name:this.myForm.controls["userName"].value,
+      email:this.myForm.controls["userEmail"].value,
+      phone:this.myForm.controls["userPhoneNumber"].value
+    }
 
+   this.AddUserService.addUser(user).subscribe({
+     next:(data:any) => {this.receivedUser = data; this.done = true; console.log(this.done)},
 
+     error: error => console.log(error)
+   })
   }
 
 
