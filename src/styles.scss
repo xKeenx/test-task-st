@@ -1,26 +1,3 @@
-/* Подключение шрифта Roboto */
-@import "@fontsource/roboto/500-italic.css";
-
-/* Убираем все отступы */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
-}
-body {
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-  line-height: 1.2;
-  width: 100%;
-  min-height: 100vh;
-  background: linear-gradient(45deg, #fff1eb, #ace0f9);
-  display: flex;
-  justify-content: center; /* чтобы контейнер */
-  align-items: center; /* был по центру */
+body{
+  background-color: black;
 }

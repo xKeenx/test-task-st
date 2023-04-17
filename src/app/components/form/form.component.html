@@ -1,50 +1,57 @@
 
+      <form  class="form" [formGroup]="myForm" (ngSubmit)="submitForm()">
 
-<div class="container">
-
-
-  <div class="content">
-
-
-    <div class="right-side">
-
-      <!-- Заголовок для формы -->
-      <div class="topic-text">Отправьте нам сообщение</div>
-
-      <!-- Форма обратной связи -->
-      <form  [formGroup]="myForm" (ngSubmit)="submitForm()">
-
-
-        <div class="input-box">
-          <span>Ваше имя:</span> <input type="text"  placeholder="Ваше имя" class="name" formControlName="name" />
+        <div class="form__header">Напишите нам</div>
+        <div  class="form__group">
+          <label for="name">Ваше имя:</label> <input type="text" id="name" placeholder="Ваше имя" class="name" formControlName="userName" />
         </div>
+        <div class="form__error" *ngIf="myForm.controls['userName'].invalid && myForm.controls['userName'].touched ">
+          Обязательно для заполнения!
+        </div>
+        <div class="form__group">
+          <label for="email">Ваш email:</label> <input id="email" type="text" placeholder="Введите email" class="email" formControlName="userEmail" />
+        </div>
+        <div class="form__error" *ngIf="myForm.controls['userEmail'].invalid && myForm.controls['userEmail'].touched ">
+          Неверный формат email!
+        </div>
+        <div  class="form__group">
+          <label for="phone">Ваш телефон:</label>  <input  id="phone" type="text" placeholder="+7 (123) 231-23-12" class="phone_number" formControlName="userPhoneNumber" [textMask]="{mask: mask}" />
 
-        <div class="input-box">
-          <span>Ваш email:</span> <input type="text" placeholder="Введите email" class="email" formControlName="email" />
         </div>
+        <div class="form__error" *ngIf="myForm.controls['userPhoneNumber'].invalid && myForm.controls['userPhoneNumber'].touched">
+          Неверный формат номера телефона!
+        </div>
+        <div  class="form__group">
+          <label for="theme">Тема:</label>
+          <select id="theme" formControlName="theme">
+      <option *ngFor="let theme of themes" [value]="theme">{{theme}}</option>
+          </select>
 
-        <div class="input-box">
-          <span>Ваш телефон:</span>  <input type="text" placeholder="+7 (123) 231-23-12" class="phone_number" formControlName="phone_number" [textMask]="{mask: mask}" />
         </div>
-        <div class="input-box">
-          <span>Тема:</span><select formControlName="theme">
-          <option>Техподдержка</option>
-          <option>Продажи</option>
-          <option>Покупки</option>
-          <option>Другое..</option>
-        </select>
+        <div class="form__error" *ngIf="myForm.controls['theme'].invalid && myForm.controls['theme'].touched">
+          Необходимо выбрать тему сообщения!
         </div>
-        <div class="input-box message-box">
-          <span>Ваше сообщение:</span><textarea placeholder="Сообщение" formControlName="message"></textarea>
-        </div>
-        <div class="input-box">
-          <span>Цифры:</span> <input type="text"  formControlName="captcha"  />
-        </div>
+        <div class="form__group">
+          <label for="message">Ваше сообщение:</label><textarea class="form__group__message"   id="message" placeholder="Сообщение" formControlName="message"></textarea>
 
+        </div>
+        <div class="form__error" *ngIf="myForm.controls['message'].invalid && myForm.controls['message'].touched">
+          Обязательно для заполнения!
+        </div>
+        <div  class="form__group__captcha">
+          <label  for="captchaInput">Цифры:</label>
+          <input type="text"  id="captchaInput" formControlName="captchaInput" />
+          <img [src]="captchaImage" alt="captcha" (click)="refreshCaptcha()" />
+
+        </div>
+        <div class="form__error" *ngIf="myForm.controls['captchaInput'].hasError('invalidCaptcha')  &&  myForm.controls['captchaInput'].touched">
+          Проверка не пройдена!
+        </div>
         <div class="button">
           <button  [disabled]="myForm.invalid" type="submit">Отправить письмо!</button>
         </div>
       </form>
-    </div>
-  </div>
-</div>
+
+
+
+

@@ -1,131 +1,157 @@
 
 
-/* Подключение шрифта Roboto */
-@import "@fontsource/roboto/500-italic.css";
 
-/* При расчете размеров инпутов учитываем внутренние отступы и границы */
-input,
-textarea {
-  box-sizing: border-box;
-}
 
-.container {
-  width: 100%;
 
-  padding: 0 20px;
-}
-
-/* Стили самой формы */
-.content {
+.form {
   display: flex;
-  align-items: center;
-  background: #fff;
-  padding: 40px;
-  border-radius: 5px;
-  box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
-
-}
+  flex-direction: column;
+  gap: 15px;
+  height: 800px;
 
 
+  max-width: 450px;
+  min-width: 400px;
 
-/* Заголовок правой колонки */
-.topic-text {
-  font-size: 23px;
-  font-weight: 600;
-  color: #3e2093;
-  margin-bottom: 10px;
-  text-align: center;
-}
+  margin: 0 auto;
+  margin-top: 20px;
 
-/* Текст правой колонки */
-.right-side p {
-  margin-bottom: 20px;
-}
-span{
-  flex:1;
-}
-/* Контейнер для input'ов формы */
-.input-box {
-  height: 50px; /* по сути задаем высоту input'а */
-  width: 100%; /* ширина на всю ширину правой колонки (с учетом padding) */
-  margin-bottom: 20px; /* отступаем снизу 20px */
-  display: flex;
-  gap:20px;
-  align-items: center;
+  border: 1px solid rgb(242, 245, 230);
+  box-shadow: 15px 15px 15px -15px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 
-}
-
-input.ng-touched.ng-invalid {border:solid red 2px;}
-input.ng-touched.ng-valid {border:solid green 2px;}
-select.ng-touched.ng-valid{border:solid green 2px}
-select.ng-touched.ng-invalid{border:solid red 2px}
-textarea.ng-touched.ng-valid{border:solid green 2px}
-textarea.ng-touched.ng-invalid{border:solid red 2px}
-/* Стили для input и textarea (поле сообщение) */
-.input-box input,
-.input-box select,
-.input-box textarea {
-  font-family: "Roboto", sans-serif;
-  height: 100%; /* растягиваем на всю высоту контейнера 50px */
-  width: 100%; /* растягиваем на всю ширину */
-  border-radius: 5px; /* скругляем края */
-  padding: 0 25px; /* отступ справа и слева 25px */
-  flex:2;
-}
-
-/* Отдельно стилизуем поле сообщение */
-.input-box textarea {
-  resize: none; /* чтобы нельзя было менять высоту */
   padding: 20px;
-  font-family: "Roboto", sans-serif;
+  background-color: #fff;
+
+
+  &__header {
+    position: relative;
+
+    width: 300px;
+    padding: 0px 0px 5px 70px;
+    margin-left: -41px;
+
+    font-size: 1.5em;
+
+    color: #ffffff;
+    background-color: #a83f2a;
+    text-shadow: 0px 1px 2px #bbb;
+    box-shadow: 0px 2px 4px #888;
+  }
+
+  &__header:after {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 0;
+    top: 100%;
+    border-width: 5px 10px;
+    border-style: solid;
+    border-color: #666 #666 transparent transparent;
+  }
+
+
+
+
+
+  &__group {
+
+    display: flex;
+    input,
+    select,
+    textarea,
+    {
+
+      flex:4;
+      border-radius: 4px;
+
+
+    }
+    &__message{
+      height: 65px;
+      min-height: 65px;
+      max-height: 65px;
+    }
+    &__captcha{
+      display: flex;
+      gap:40px;
+      label{
+        align-self: center;
+      }
+      input.ng-touched.ng-valid {
+        border: solid green 2px;
+      }
+
+      input.ng-touched.ng-invalid {
+        border: solid red 2px;
+      }
+    }
+
+    input.ng-touched.ng-valid {
+      border: solid green 2px;
+    }
+
+    input.ng-touched.ng-invalid {
+      border: solid red 2px;
+    }
+
+    select.ng-touched.ng-valid {
+      border: solid green 2px
+    }
+
+    select.ng-touched.ng-invalid {
+      border: solid red 2px
+    }
+
+    textarea.ng-touched.ng-valid {
+      border: solid green 2px
+    }
+
+    textarea.ng-touched.ng-invalid {
+      border: solid red 2px
+    }
+    label{
+      flex: 1;
+      display: block;
+      margin-bottom: 10px;
+      align-self: center;
+    }
+  }
+  button{
+    height: 100%;
+    width: 200px;
+    font-size: 1.0rem;
+  }
+  &__error{
+    color:white;
+    padding: 5px;
+    background: red;
+    margin-top: 5px;
+    width: 100%;
+  }
 }
 
-/* Это контейнер для поля сообщение */
-.message-box {
-  min-height: 110px; /* минимальная высота 110px */
-}
 
-/* Стили для контейнера кнопки */
-.button {
-  display: inline-block; /* делаем блочно-строчный элемент */
-}
-
-/* Стили для самой кнопки */
-.button button[type="submit"] {
-  color: #fff;
-  font-size: 18px;
-  background: #3e2093;
-  outline: none;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 7px;
-  transition: 0.2s; /* чтобы плавно менялся цвет при наведении (:hover) */
-}
-
-
-/* Меняем цвет фона при наведении на кнопку */
-.button  button[type="submit"]:hover {
-  background: rgb(0, 0, 207);
-}
-
-.button  button[type="submit"]:disabled {
-  background: rgb(190, 190, 190);
-}
-
-.name{
-  /*Позиционируем*/
-  background: url("img/name.png") 4px no-repeat ;
+.name {
+  padding: 20px;
+  background: url("img/name.png") 4px no-repeat;
   background-size: 15px;
 }
-.email{
-  /*Позиционируем*/
-  background: url("img/email.png") 4px no-repeat ;
+
+.email {
+  padding: 20px;
+  background: url("img/email.png") 4px no-repeat;
   background-size: 15px;
 }
-.phone_number{
-  /*Позиционируем*/
-  background: url("img/phone.png") 4px no-repeat ;
+
+.phone_number {
+  padding: 20px;
+  background: url("img/phone.png") 4px no-repeat;
   background-size: 15px;
 }
+
+
+
 
 
