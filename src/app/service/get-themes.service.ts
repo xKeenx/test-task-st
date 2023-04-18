@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
-import {IUser} from "../models/user";
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AddUserService {
+export class GetThemesService {
 
   constructor(private http:HttpClient) { }
 
-  addUser(user:IUser) {
+  getThemes() {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
-   return this.http.post('http://localhost:3000/users', user, {headers})
+   return this.http.get('http://localhost:3000/themes', {headers})
 
+   }
   }
-}
+

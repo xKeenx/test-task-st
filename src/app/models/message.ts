@@ -1,25 +1,22 @@
-import {User} from './user';
-import {Theme} from './theme';
 
 export class Message {
 
-  public theme:Theme
-  public user:User
+  public theme_id:string
+  public user_id:string|undefined
 
-  public content:string
-  public id?:number
+  public text:string
+  public _id?:string
   constructor(data:IMessage) {
-    this.theme = data.theme
-    this.user = data.user
-    this.content = data.content
-    this.id = data.id
+    this.theme_id = data.theme_id
+    this.user_id = data.user_id
+    this.text = data.text
+    this._id = data._id
   }
 }
 
 export interface IMessage{
-  theme:Theme,
-  user:User,
-
-  content:string,
-  id?:number
+  theme_id:string,
+  user_id:string|undefined,
+  text:string,
+  _id?:string
 }

@@ -1,13 +1,14 @@
 export class Theme {
+  public _id?:number
   public name:string
-  public id?:number
+
   constructor(data:Theme) {
+    this._id = data._id
     this.name = data.name
-    this.id = data.id
   }
 }
 
 export interface ITheme{
+  _id?:number
   name:string,
-  id?:number
 }

@@ -8,6 +8,10 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { FormComponent } from './components/form/form.component';
 import {AddUserService} from './service/add-user.service'
 import { HttpClientModule } from '@angular/common/http';
+import {AddMessageService} from "./service/add-message.service";
+import {GetThemesService} from "./service/get-themes.service";
+import {GetUsersService} from "./service/get-user.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     TextMaskModule,
     HttpClientModule
   ],
-  providers: [AddUserService],
+  providers: [AddUserService,AddMessageService,GetThemesService,GetUsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

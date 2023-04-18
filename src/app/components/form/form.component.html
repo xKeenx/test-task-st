@@ -1,6 +1,6 @@
-
-      <form  class="form" [formGroup]="myForm" (ngSubmit)="submitForm()">
-
+<div >
+      <form  [formGroup]="myForm" (ngSubmit)="submitForm()">
+        <div *ngIf="!formSubmitted" class="form">
         <div class="form__header">Напишите нам</div>
         <div  class="form__group">
           <label for="name">Ваше имя:</label> <input type="text" id="name" placeholder="Ваше имя" class="name" formControlName="userName" />
@@ -24,7 +24,7 @@
         <div  class="form__group">
           <label for="theme">Тема:</label>
           <select id="theme" formControlName="theme">
-      <option *ngFor="let theme of themes" [value]="theme">{{theme}}</option>
+      <option *ngFor="let theme of themes"  [value]="theme._id">{{theme.name}}</option>
           </select>
 
         </div>
@@ -50,14 +50,23 @@
         <div class="button">
           <button  [disabled]="myForm.invalid" type="submit" (submit)="submitForm" >Отправить письмо!</button>
         </div>
-
-        <div *ngIf="done">
-          <div>Получено от сервера:</div>
-          <div>Имя: {{receivedUser?.name}}</div>
-          <div>Возраст: {{receivedUser?.email}}</div>
-          <div>Возраст: {{receivedUser?.phone}}</div>
-        </div>`,
+        </div>
+        <div *ngIf="formSubmitted" class="form">
+          <h2 *ngIf="flag">Данный пользователь не был добавлен в БД,так как уже зарегистрирован</h2>
+          <h2>Сообщение добавлено в БД со следующими полями:</h2>
+          <p>user_id: {{ message.user_id }}</p>
+          <p>text: {{ message.text }}</p>
+          <p>theme_id: {{ message.theme_id }}</p>
+        </div>
       </form>
+</div>
+
+
+
+
+
+
+
 
 
 

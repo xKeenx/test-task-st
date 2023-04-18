@@ -2,7 +2,7 @@ export class User{
   public name:string
   public email:string
   public phone:string
-  public id?:number
+  public _id?:string
 
   constructor(
     data:IUser
@@ -10,7 +10,7 @@ export class User{
     this.name = data.name
     this.email = data.email
     this.phone = data.phone
-    this.id = data.id
+    this._id = data._id
   }
 }
 
@@ -19,5 +19,5 @@ export interface IUser{
    email:string,
 
    phone:string,
-   id?:number
+   _id?:string
 }

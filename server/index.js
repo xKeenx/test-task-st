@@ -1,24 +1,18 @@
-const express =require ("express")
-const cors = require( "cors");
-const bodyParser = require ("body-parser");
-const mongoose = require ('mongoose')
-const path = require ("path")
-const  config = require ( '../config/db')
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cors = require('cors')
+const {Schema} = require("mongoose");
 const app = express();
-const User = require ('./models/user')
-const router = express.Router();
-const jsonParser = express.json();
+const port = process.env.PORT || 3000;
 
-const port = 3000;
-
-
-
-app.use(bodyParser.json())
-
-app.use(express.static(path.join(__dirname,'public')))
-
-
-mongoose.connect(config.db,{useNewUrlParser:true,useUnifiedTopology:true})
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
+mongoose.connect('mongodb://127.0.0.1:27017/st', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 mongoose.connection.on('connected',()=>{
   console.log('Успешное подключение')
@@ -27,29 +21,67 @@ mongoose.connection.on('error',()=>{
   console.log('Не удалось подключиться')
 })
 
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
-  next();
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String
 });
-app.post("/", jsonParser, function (request, response) {
+const User = mongoose.model('User', userSchema);
 
-  // если не переданы данные, возвращаем ошибку
-  if(!request.body) return response.sendStatus(400);
+const themeSchema = new mongoose.Schema({
+  name: String,
+});
+const Theme = mongoose.model('Theme', userSchema);
 
-  // получаем данные
-  let name = request.body.name;
-  let email = request.body.email;
-  let phone = request.body.phone
-  // имитируем некоторую обработку данных, например, изменим значение userage
+const messageSchema = new mongoose.Schema({
+  text: String,
+  user_id:[{type:Schema.Types.ObjectId,ref:'User'}],
+  theme_id:[{type:Schema.Types.ObjectId,ref:'Theme'}]
+});
+const Message = mongoose.model('Message', messageSchema);
 
-  // отправка данных обратно клиенту
-  response.json({"name": name, "email": email,"phone":phone});
+app.get('/themes', async (req, res) => {
+ const themes = await Theme.find({})
+  res.send(themes)
+});
+app.get('/user', async (req, res) => {
+  const users = await User.find({})
+  res.send(users)
 });
 
 
-app.listen(port,()=>{
-  console.log('server run port' + port)
-})
+app.post('/users',  (req, res) => {
+  const user = new User({
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone
+  });
+
+
+    user.save().then(()=>{
+      res.send({_id:user.id})
+    }).catch((err)=>{
+      console.log(err);
+    })
+
+
+});
+
+app.post('/messages',  (req, res) => {
+  const message = new Message({
+    text: req.body.text,
+    user_id:req.body.user_id,
+    theme_id:req.body.theme_id
+
+  });
+
+  message.save().then(()=>{
+    console.log('message_save')
+  }).catch((err)=>{
+    console.log(err);
+  })
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
